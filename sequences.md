@@ -40,3 +40,36 @@ sequenceDiagram
         Comment-->>-User: confirmation de la supprenssion
     end
 ```
+
+# Diagrammes d'admin
+
+```mermaid
+
+sequenceDiagram
+    actor Admin
+    participant Expo
+    participant Database
+
+    rect rgb(255,240,240)
+        Admin->>+Expo: crée les expos 
+        activate Expo
+        Expo-->>+Database: enregistre les expos
+        Expo-->>-Admin: rédirige vers la page de l'expo
+    end  
+
+    rect rgb(180,245,220)
+        Admin->>+Expo: modifie des expos 
+        activate Expo
+        Expo-->>+Database: enregistre les changements
+        Expo-->>-Admin: rédirige vers la page de l'expo
+    end  
+
+    rect rgb(170,200,200)
+        Admin->>+Expo: supprime un expo
+        activate Expo
+        Expo-->>+Admin: demande confirmation
+
+        Expo-->>+Database: supprime l'expo
+        Expo-->>-Admin: rédirige vers la page de l'expo
+    end 
+```
