@@ -68,8 +68,11 @@ sequenceDiagram
         Admin->>+Expo: supprime un expo
         activate Expo
         Expo-->>+Admin: demande confirmation
-
-        Expo-->>+Database: supprime l'expo
-        Expo-->>-Admin: rédirige vers la page de l'expo
+        alt confirmation
+            Expo-->>+Database: supprime l'expo
+            Expo-->>-Admin: rédirige vers la page de l'expo
+        else annulation
+            Expo-->>-Admin: rédirige vers la page de l'expo
+        end
     end 
 ```
